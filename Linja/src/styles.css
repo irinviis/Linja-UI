@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+
+.btn1 {
+    background-color: #d0e5c3;
+    color: #1b1b1b; 
+    border: 2px solid #d0e5c3;
+    border-radius: .2rem;
+    padding: 12px;
+}
+
+    .btn1:hover {
+        background-color:#a2cb88; 
+        color: #1b1b1b; 
+        border: 2px solid #a2cb88;
+        border-radius: .2rem;
+        padding: 12px;
+    }
+
+    body {
+        background-color: #fdfdf6;
+    }
