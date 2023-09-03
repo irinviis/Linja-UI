@@ -15,6 +15,14 @@
         padding: 12px;
     }
 
+    .btn1:active {
+        background-color:#a2cb88; 
+        color:#1b1b1b; 
+        border: 2px solid #a2cb88;
+        border-radius: .2rem;
+        padding: 12px;
+    }
+
     body {
         background-color: #fdfdf6;
     }

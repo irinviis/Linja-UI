@@ -2,13 +2,13 @@
 <div class="container mt-4 mb-3">
 
     <!-- Button add bus -->
-    <button class="btn btn-dark rounded-1 text-uppercase" (click)="openModal(template)">
+    <button class="btn btn-dark rounded-1 text-uppercase" (click)="openModalAddBus(addBusTemplate)">
         <i class="fa fa-plus" style="margin-right: 3px;" aria-hidden="true"></i>
         Lisää Bussi
     </button>
 
     <!-- Add bus modal -->
-    <ng-template #template>
+    <ng-template #addBusTemplate>
 
         <!-- Modal header -->
         <div class="modal-header">
@@ -29,11 +29,6 @@
                 <!-- RegNumber -->
                 <input class="form-control rounded-1 mt-3" [(ngModel)]="newBus.regNumber" 
                         placeholder="Rekisterinumero" name="regNumber">
-
-                <!-- Last Service Date -->
-                <input  class="form-control rounded-1 mt-3" [(ngModel)]="newBus.lastServiceDate" 
-                        placeholder="Viimeinen huoltopäivämäärä" name="lastServiceDate" bsDatepicker
-                        [bsConfig]="bsConfig">
 
             </form>
         </div>
@@ -66,29 +61,101 @@
                     <div class="row">
 
                     <div class="col-10">
-                        <h5 class="card-title text-uppercase">{{ bus.maker }} {{ bus.regNumber }}</h5>
-                        <p class="card-text">Viimeinen Huoltopäivämäärä: {{ bus.lastServiceDate | date: "dd MMMM yyyy" }}</p>
+                        <h5 class="card-title text-uppercase fw-semibold" style="margin-bottom: 20px;">{{ bus.maker }} {{ bus.regNumber }}</h5>
+                        <!-- <h6 class="card-text">VIIMEINEN KATSASTUS: {{ bus.lastServiceDate | date: 'dd.MM.yyyy' }}</h6>
+                        <h6 class="card-text">VIIMEINEN VUOSIHUOLTO: {{ bus.lastServiceDate | date: 'dd.MM.yyyy' }}</h6> -->
                     </div>
 
                     <!-- Buttons -->
                     <div class="col-2">
                         <div class="d-flex justify-content-md-end">
+                            <button class="btn rounded-1"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></button>
+                        </div>
+
+                        <div class="d-flex justify-content-md-end" (click)="openModalUpdateBus(updateBusTemplate)">
                             <button class="btn rounded-1"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></button>
                         </div>
 
+                            <!-- Update bus modal -->
+                        <ng-template #updateBusTemplate>
+
+                            <!-- Modal header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title pull-left">Päivitä bussi</h4>
+                                <button type="button" class="btn-close close pull-right" aria-label="Close"
+                                        (click)="modalRef?.hide()">
+                                </button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form #updateForm="ngForm" (ngSubmit)="updateBus(bus)" id="updateBus">
+
+                                    <!-- Bus maker -->
+                                    <input class="form-control rounded-1 mt-3" [(ngModel)]="bus.maker" 
+                                            placeholder="Valmistaja" name="maker">
+
+                                    <!-- RegNumber -->
+                                    <input class="form-control rounded-1 mt-3" [(ngModel)]="bus.regNumber" 
+                                            placeholder="Rekisterinumero" name="regNumber">
+
+                                </form>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary rounded-1" aria-label="Close"
+                                        (click)="modalRef?.hide()">
+                                Peruuttaa
+                                </button>
+                                <button type="button" class="btn btn-dark px-4 rounded-1" (click)="updateBus(bus)"
+                                        form="updateBus">
+                                Päivitä
+                                </button>
+                            </div>
+
+                        </ng-template>
+
+
+
                         <div class="d-flex justify-content-md-end">
-                            <button class="btn rounded-1"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
+                            <button class="btn rounded-1" (click)="openModalRemoveBus(removeBusTemplate)">
+                            <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
                         </div>
+
+                        <!-- Remove bus modal -->
+                        <ng-template #removeBusTemplate>
+
+                            <!-- Modal header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title pull-left">Poista bussi</h4>
+                                <button type="button" class="btn-close close pull-right" aria-label="Close"
+                                        (click)="modalRef?.hide()">
+                                </button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p>Haluatko varmasti poistaa bussi {{ bus.maker }} {{ bus.regNumber }}?</p>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary rounded-1" aria-label="Close"
+                                        (click)="modalRef?.hide()">
+                                Peruuttaa
+                                </button>
+                                <button type="button" class="btn btn-dark px-4 rounded-1" (click)="removeBus(bus)">
+                                Poista
+                                </button>
+                            </div>
+
+                        </ng-template>
                     </div>
-    
                 </div>
-
-            </div>
-          
+            </div>   
         </div>
-
-    </ng-container>
-    
+    </ng-container>   
 </div>
 
 

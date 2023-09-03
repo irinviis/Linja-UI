@@ -43,8 +43,30 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  openModalAddBus(addBusTemplate: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(addBusTemplate);
+  }
+
+  updateBus(busToUpdate: IBus) {
+    this.busService.updateBus(busToUpdate).subscribe(() => {
+      this.modalService.hide();
+      this.getBusses();
+    })
+  }
+
+  openModalUpdateBus(updateBusTemplate: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(updateBusTemplate);
+  }
+
+  removeBus(busToRemove: IBus) {
+    this.busService.removeBus(busToRemove).subscribe(() => {
+      this.modalService.hide();
+      this.getBusses();
+    })
+  }
+
+  openModalRemoveBus(removeBusTemplate: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(removeBusTemplate);
   }
 
 }

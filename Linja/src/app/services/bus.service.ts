@@ -18,11 +18,15 @@ export class BusService {
     return this.http.get<IBus[]>(this.baseUrl + 'Bus/GetBusses');
   }
 
-  getBus(busId: number) {
-    return this.http.get<IBus>(this.baseUrl + `Bus/GetBus?busId=${busId}`);
-  }
-
   addBus(bus: IBus) {
     return this.http.post(this.baseUrl + 'Bus/AddBus', bus);
+  }
+
+  updateBus(bus: IBus) {
+    return this.http.post(this.baseUrl + 'Bus/UpdateBus', bus);
+  }
+
+  removeBus(bus: IBus) {
+    return this.http.post(this.baseUrl + 'Bus/RemoveBus', bus);
   }
 }

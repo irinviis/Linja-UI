@@ -17,12 +17,14 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserAnimationsModule,
