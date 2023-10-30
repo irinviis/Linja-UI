@@ -1,16 +1,15 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { IBus } from '../models/bus.model';
-import { BusService } from '../services/bus.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { BsLocaleService, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BusService } from 'src/app/services/bus.service';
+import { IBus } from 'src/app/models/bus.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-bus',
+  templateUrl: './bus.component.html',
+  styleUrls: ['./bus.component.css']
 })
-export class HomeComponent implements OnInit {
+export class BusComponent implements OnInit {
   busses: IBus[] = [];
   newBus: IBus = <IBus>{};
   modalRef?: BsModalRef;

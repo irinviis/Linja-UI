@@ -16,4 +16,8 @@ export class MaintenanceService {
   getMaintenances() {
     return this.http.get<IMaintenance[]>(this.baseUrl + 'Maintenance/GetMaintenances');
   }
+
+  addMaintenance(maintenance: IMaintenance) {
+    return this.http.post(this.baseUrl + 'Maintenance/AddMaintenance', maintenance);
+  }
 }

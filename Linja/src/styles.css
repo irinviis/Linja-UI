@@ -1,28 +1,95 @@
 
-.btn1 {
-    background-color: #d0e5c3;
-    color: #1b1b1b; 
-    border: 2px solid #d0e5c3;
-    border-radius: .2rem;
-    padding: 12px;
+
+html,
+body {
+  font-family: 'Quicksand', sans-serif !important;
 }
 
-    .btn1:hover {
-        background-color:#a2cb88; 
-        color: #1b1b1b; 
-        border: 2px solid #a2cb88;
-        border-radius: .2rem;
-        padding: 12px;
-    }
+.logo {
+  font-family: 'Black Ops One' !important;
+  color: #1b1b1b;
+}
 
-    .btn1:active {
-        background-color:#a2cb88; 
-        color:#1b1b1b; 
-        border: 2px solid #a2cb88;
-        border-radius: .2rem;
-        padding: 12px;
-    }
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
 
-    body {
-        background-color: #fdfdf6;
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    text-align: start;
+    width: 200px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  .sidebar a {
+    display: block;
+    color: #5f5f5f;
+    padding: 16px;
+    text-decoration: none;
+    border-radius: 0%;
+  }
+   
+  .sidebar a.active {
+    background-color: #f0f0f0;
+    color: #1b1b1b;
+    border-radius: 0%;
+    border: none;
+  }
+  
+  .sidebar a:hover:not(.active) {
+    background-color: #f0f0f0;
+    color: #5f5f5f;
+    border-radius: 0%;
+    border: none;
+  }
+
+  .sidebar button {
+    display: block;
+    color: #1b1b1b;
+    padding: 16px;
+    text-decoration: none;
+    border-radius: 0%;
+    border: none;
+  }
+   
+  .sidebar button.active {
+    background-color: #f0f0f0;
+    color: #1b1b1b;
+    border-radius: 0%;
+    border: none;
+  }
+  
+  .sidebar button:hover:not(.active) {
+    background-color: #f0f0f0;
+    color: #1b1b1b;
+    border-radius: 0%;
+  }
+  
+  div.content {
+    background-color: #f0f0f0;
+    margin-left: 200px;
+    padding: 1px 16px;
+   
+  }
+  
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      float: none;
     }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  

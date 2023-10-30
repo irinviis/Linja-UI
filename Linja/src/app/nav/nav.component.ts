@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
+  isBtnActive: number = 1;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  toggleBtn(id: number) {
+    this.isBtnActive = id;
   }
 
 }

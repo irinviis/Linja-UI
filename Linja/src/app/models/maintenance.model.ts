@@ -7,5 +7,5 @@ export interface IMaintenance{
     nextMaintenanceTimestamp: Date;
     removed: boolean;
     busId: number;
-    maintenanceType: IMaintenanceTypeEnum
+    maintenanceType: IMaintenanceTypeEnum;
 }

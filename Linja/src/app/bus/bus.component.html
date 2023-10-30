@@ -1,5 +1,4 @@
 
-<div class="container mt-4 mb-3">
 
     <!-- Button add bus -->
     <button class="btn btn-dark rounded-1 text-uppercase" (click)="openModalAddBus(addBusTemplate)">
@@ -52,25 +51,21 @@
     <ng-container *ngFor="let bus of busses">
 
         <!-- Card -->
-        <div class="card w-100 mt-4 rounded-1" 
-            style="border-color: #f0f3e8; border-width: 3px;  border-left-width: 8px; 
-            border-left-color: #d9e7cb; background-color: #fdfdf6;">
+        <div class="card w-100 mt-4 mb-4 rounded-1 border-0">
 
             <!-- Card body -->
             <div class="card-body">
                     <div class="row">
 
                     <div class="col-10">
-                        <h5 class="card-title text-uppercase fw-semibold" style="margin-bottom: 20px;">{{ bus.maker }} {{ bus.regNumber }}</h5>
+                        <h5 class="card-title text-uppercase fw-semibold" style="margin-bottom: 20px;">{{ bus.maker }}</h5>
+                        <h5 class="card-title text-uppercase fw-semibold" style="margin-bottom: 20px;">{{ bus.regNumber }}</h5>
                         <!-- <h6 class="card-text">VIIMEINEN KATSASTUS: {{ bus.lastServiceDate | date: 'dd.MM.yyyy' }}</h6>
                         <h6 class="card-text">VIIMEINEN VUOSIHUOLTO: {{ bus.lastServiceDate | date: 'dd.MM.yyyy' }}</h6> -->
                     </div>
 
-                    <!-- Buttons -->
+                    <!-- Icon buttons -->
                     <div class="col-2">
-                        <div class="d-flex justify-content-md-end">
-                            <button class="btn rounded-1"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></button>
-                        </div>
 
                         <div class="d-flex justify-content-md-end" (click)="openModalUpdateBus(updateBusTemplate)">
                             <button class="btn rounded-1"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></button>
@@ -155,7 +150,5 @@
                 </div>
             </div>   
         </div>
-    </ng-container>   
-</div>
 
 
