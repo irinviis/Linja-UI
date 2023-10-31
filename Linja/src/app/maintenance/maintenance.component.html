@@ -30,11 +30,32 @@
                         placeholder="Huollon nimi" name="info">
 
                 <!-- Select bus -->
-                <select single class="form-select rounded-1 mt-3" name="busId"
+                <select class="form-select rounded-1 mt-3"
                      [(ngModel)]="newMaintenance.busId">
-                <option *ngFor="let bus of busses" value="{{ bus.id }}">
-                    {{ bus.regNumber }}
-                </option>
+                     <option [ngValue]="" selected>
+                        Valitse bussi
+                    </option>
+                    <option *ngFor="let bus of busses" value="{{ bus.id }}">
+                        {{ bus.regNumber | uppercase }}
+                    </option>
+                </select>
+
+                <!-- Timestamp -->
+                <input class="form-control rounded-1 mt-3" [(ngModel)]="newMaintenance.timestamp" 
+                    placeholder="Viimeinen huolto" name="timestamp"
+                    bsDatepicker [bsConfig]="bsConfig" value="date">
+
+                <!-- Next maintenance timestamp -->
+                <input class="form-control rounded-1 mt-3" [(ngModel)]="newMaintenance.nextMaintenanceTimestamp" 
+                    placeholder="Seuraava huolto" name="nextMaintenanceTimestamp"
+                    bsDatepicker [bsConfig]="bsConfig" value="date">
+
+                <!-- Select maintenance type -->
+                <select single class="form-select rounded-1 mt-3" name="maintenanceType"
+                     [(ngModel)]="newMaintenance.maintenanceType">
+                     <option value="">
+                  
+                    </option>
                 </select>
 
             </form>
@@ -55,7 +76,7 @@
     </ng-template>
 
 
-    <!-- Maintenances -->
+    <!-- Bus maintenances -->
     <ng-container *ngFor="let bus of busses">
 
         <!-- Card -->
@@ -63,36 +84,121 @@
 
             <!-- Card body -->
             <div class="card-body">
-                    <div class="row">
 
-                    <div class="col-10">
-                        <h5 class="card-title text-uppercase fw-semibold" style="margin-bottom: 20px;">{{bus.regNumber}}</h5>
+                <div class="row">
+                    <div class="col-8">
+                        <h5 class="card-title text-uppercase fw-semibold" >{{bus.regNumber}}</h5>
                     </div>
 
-                    <div class="col-10" *ngFor="let maintenance of bus.maintenances">
-                       <h6 class="card-title text-uppercase fw-semibold">{{ maintenance.info }}</h6>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-md-end">
+                            <button class="btn btn-dark btn-small rounded-1" (click)="openModalAddMaintenance(addMaintenanceTemplate)">
+                                <i class="fa fa-plus" style="margin-right: 3px;" aria-hidden="true"></i>
+                                Lisää huolto
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Icon buttons -->
-                    <div class="col-2">
+                    <!-- Add maintenance modal for bus -->
+                    <ng-template #addMaintenanceTemplate>
 
-                        <div class="d-flex justify-content-md-end">
-                            <button class="btn rounded-1" routerLink="/maintenance"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></button>
+                        <!-- Modal header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title pull-left">Lisää huolto</h4>
+                            <button type="button" class="btn-close close pull-right" aria-label="Close"
+                                    (click)="modalRef?.hide()">
+                            </button>
                         </div>
 
-                        <div class="d-flex justify-content-md-end" >
-                            <button class="btn rounded-1"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></button>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form #addForm="ngForm" (ngSubmit)="addMaintenance()" id="addMaintenance">
+
+                                <!-- Info -->
+                                <input class="form-control rounded-1 mt-3" [(ngModel)]="newMaintenance.info" 
+                                        placeholder="Huollon nimi" name="info">
+
+                                <!-- Select bus -->
+                                <select class="form-select rounded-1 mt-3"
+                                    [(ngModel)]="newMaintenance.busId">
+                                    <option [ngValue]="" selected>
+                                        Valitse bussi
+                                    </option>
+                                    <option *ngFor="let bus of busses" value="{{ bus.id }}">
+                                        {{ bus.regNumber }}
+                                    </option>
+                                </select>
+
+                                <!-- Timestamp -->
+                                <input class="form-control rounded-1 mt-3" [(ngModel)]="newMaintenance.timestamp" 
+                                    placeholder="Viimeinen huolto" name="timestamp"
+                                    bsDatepicker [bsConfig]="bsConfig" value="date">
+
+                                <!-- Next maintenance timestamp -->
+                                <input class="form-control rounded-1 mt-3" [(ngModel)]="newMaintenance.nextMaintenanceTimestamp" 
+                                    placeholder="Seuraava huolto" name="nextMaintenanceTimestamp"
+                                    bsDatepicker [bsConfig]="bsConfig" value="date">
+
+                                <!-- Select maintenance type -->
+                                <select single class="form-select rounded-1 mt-3" name="maintenanceType"
+                                    [(ngModel)]="newMaintenance.maintenanceType">
+                                    <option value="">
+                                
+                                    </option>
+                                </select>
+
+                            </form>
                         </div>
 
-                        <div class="d-flex justify-content-md-end">
-                            <button class="btn rounded-1" >
-                            <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
+                        <!-- Buttons -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded-1" aria-label="Close"
+                                    (click)="modalRef?.hide()">
+                            Peruuttaa
+                            </button>
+                            <button type="button" class="btn btn-dark px-4 rounded-1" (click)="addMaintenance()"
+                                    form="addMaintenance">
+                            Lisää
+                            </button>
                         </div>
 
+                    </ng-template>
+
+
+                </div>
+
+                <div class="row">
+
+                    <table class="table table-hover mt-3">
+                        <thead class="table-light">
+                          <tr style="color: #495057">
+                            <th scope="col">Huolto</th>
+                            <th scope="col">Viimeinen huolto</th>
+                            <th scope="col">Seuraava huolto</th>
+                            <th scope="col">Tyyppi</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let maintenance of bus.maintenances">
+                    
+                    
+                                <td>{{ maintenance.info }}</td>
+                                <td>{{ maintenance.timestamp | date: 'dd MMM yyyy' }}</td>
+                                <td>{{ maintenance.nextMaintenanceTimestamp | date: 'dd MMM yyyy' }}</td>
+                                <td>{{ maintenance.maintenanceType }}</td>
+                                <td>
+                                    <a class="btn"><i class="fa fa-pencil"></i></a>
+                                    <a class="btn"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
                         
-                    </div>
                 </div>
             </div>   
-        </div>
 
+        </div>
+    </ng-container>
 
